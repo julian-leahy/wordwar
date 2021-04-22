@@ -41,6 +41,7 @@ function Board() {
                         selected = current.includes(idx) ? true : false;
                     } else {
                         disabled = false;
+                        selected = false;
                     }
                     return (
                         <Square key={idx} tile={tile} id={idx} disabled={disabled} selected={selected} />

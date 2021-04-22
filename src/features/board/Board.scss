@@ -1,0 +1,7 @@
+@import "./../../partials/vars";
+
+.board {
+    width: $board;
+    display: flex;
+    flex-wrap: wrap;
+}

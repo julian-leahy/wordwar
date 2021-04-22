@@ -8,19 +8,17 @@
     height: $square;
     border: 1px solid #ccc;
     font-size: 3rem;
-    &:hover {
-        background-color: #000;
+    transition: background-color 300ms;
+    &:hover:not(.disabled) {
+        background-color: $dark;
         color: #fff;
+        cursor: pointer;
     }
     &.disabled {
-        background-color: #333;
-        cursor: not-allowed;
-        &:hover {
-            color: #000;
-        }
+        background-color: lighten($dark, 85);
     }
     &.active {
-        background-color: #000;
-        color: yellowgreen;
+        background-color: $dark;
+        color: $brightGreen;
     }
 }

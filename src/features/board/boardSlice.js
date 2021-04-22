@@ -4,7 +4,8 @@ import { shuffledTiles } from './../../app/letters';
 const initialState = {
     tiles: shuffledTiles,
     chars: [],
-    disabled: []
+    disabled: [],
+    current: []
 }
 
 export const boardSlice = createSlice({
@@ -24,15 +25,19 @@ export const boardSlice = createSlice({
         },
         resetIsActive: (state) => {
             state.disabled = []
+        },
+        isCurrent: (state, action) => {
+            state.current.push(action.payload);
         }
 
     }
 })
 
-export const { setBoard, addChar, isActive, resetIsActive } = boardSlice.actions;
+export const { setBoard, addChar, isActive, resetIsActive, isCurrent } = boardSlice.actions;
 
 export const selectBoard = (state) => state.board.tiles;
 export const selectChar = (state) => state.board.chars;
 export const selectDisabled = (state) => state.board.disabled;
+export const selectCurrent = (state) => state.board.current;
 
 export default boardSlice.reducer;

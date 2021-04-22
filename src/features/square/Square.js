@@ -1,19 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addChar, isActive, resetIsActive, selectDisabled } from '../board/boardSlice';
+import { addChar, isActive, isCurrent, resetIsActive, selectDisabled } from '../board/boardSlice';
 import './Square.scss';
 
-function Square({ tile, id, disabled }) {
+function Square({ tile, id, disabled, selected }) {
 
     const dispatch = useDispatch();
-    const [active, setActive] = useState(false);
     const disabledGroup = useSelector(selectDisabled)
 
     const selectedChar = () => {
         // no selecting active or disabled items
-        if (active || (disabledGroup.length > 0 && !disabledGroup.includes(id))) return
+        if (selected || (disabledGroup.length > 0 && !disabledGroup.includes(id))) return
         dispatch(addChar(tile));
-        setActive(true);
+        dispatch(isCurrent(id))
         freeSquares(id)
     }
 
@@ -38,7 +37,7 @@ function Square({ tile, id, disabled }) {
 
     return (
         <div
-            className={`square ${active ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
+            className={`square ${selected ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
             aria-label='Select Letter'
             role='button'
             onClick={selectedChar}

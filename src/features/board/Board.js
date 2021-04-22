@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
-import './Board.scss'
 import { useDispatch, useSelector } from 'react-redux';
-import Square from '../square/Square';
-import { selectBoard, selectChar, selectDisabled, selectCurrent, clearBoard, saveWords, findWords } from '../board/boardSlice';
+import { clearBoard, findWords, saveWords, selectBoard, selectChar, selectCurrent, selectDisabled } from '../board/boardSlice';
 import Output from '../output/Output';
+import Square from '../square/Square';
+import './Board.scss';
 
 let disabled, selected;
 
@@ -47,7 +47,6 @@ function Board() {
             <div className='char'>
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
             </div>
-            <button onClick={() => dispatch(findWords())}>TEST</button>
         </div>
     )
 }

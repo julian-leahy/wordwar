@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { shuffledTiles } from './../../app/letters';
+import getAvailableWords from './../../app/findAllWords';
 
 const initialState = {
     tiles: shuffledTiles,
     chars: [],
     disabled: [],
     current: [],
-    wordList: []
+    wordList: [],
+    allWords: []
 }
 
 export const boardSlice = createSlice({
@@ -44,17 +46,27 @@ export const boardSlice = createSlice({
             state.current = [];
             state.chars = [];
             state.disabled = [];
+        },
+        allWords: (state, action) => {
+            state.allWords = action.payload
         }
 
     }
 })
 
-export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords } = boardSlice.actions;
+export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords } = boardSlice.actions;
 
 export const selectBoard = (state) => state.board.tiles;
 export const selectChar = (state) => state.board.chars;
 export const selectDisabled = (state) => state.board.disabled;
 export const selectCurrent = (state) => state.board.current;
 export const selectWordList = (state) => state.board.wordList;
+
+// finds all available words from current board state
+export const findWords = () => (dispatch, getState) => {
+    const currentValue = selectBoard(getState());
+    const words = getAvailableWords(currentValue);
+    dispatch(allWords(words))
+};
 
 export default boardSlice.reducer;

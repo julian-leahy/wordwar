@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addChar, isActive, resetIsActive } from '../board/boardSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { addChar, isActive, resetIsActive, selectDisabled } from '../board/boardSlice';
 import './Square.scss';
 
 function Square({ tile, id, disabled }) {
 
     const dispatch = useDispatch();
     const [active, setActive] = useState(false);
+    const disabledGroup = useSelector(selectDisabled)
 
     const selectedChar = () => {
+        // no selecting active or disabled items
+        if (active || (disabledGroup.length > 0 && !disabledGroup.includes(id))) return
         dispatch(addChar(tile));
         setActive(true);
         freeSquares(id)
@@ -32,8 +35,6 @@ function Square({ tile, id, disabled }) {
         // add to redux all available squares (by id)
         dispatch(isActive(i));
     };
-
-
 
     return (
         <div

@@ -40,7 +40,7 @@ export const boardSlice = createSlice({
         // transfer selected letter and save as complete word
         saveWords: (state) => {
             const word = state.chars.join('');
-            if (word.length > 2) {
+            if (word.length > 2 && !state.wordList.includes(word)) {
                 state.wordList.push(word)
             }
         },

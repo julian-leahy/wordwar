@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBoard, findWords, saveWords, selectBoard, selectChar, selectCurrent, selectDisabled } from '../board/boardSlice';
+import { clearBoard, findWords, saveWords, selectBoard, selectChar, selectCurrent, selectDisabled, selectWordList } from '../board/boardSlice';
 import Difficulty from '../difficulty/Difficulty';
 import Output from '../output/Output';
 import Square from '../square/Square';
@@ -15,6 +15,7 @@ function Board() {
     const chars = useSelector(selectChar);
     const active = useSelector(selectDisabled);
     const current = useSelector(selectCurrent);
+    const wordList = useSelector(selectWordList);
 
     // only run once!
     useEffect(() => {
@@ -50,6 +51,10 @@ function Board() {
             </div>
             <div className='char'>
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
+            </div>
+
+            <div className='wordlist'>
+                {wordList.map((char, idx) => <p key={idx}>{char}</p>)}
             </div>
         </div>
     )

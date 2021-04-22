@@ -85,7 +85,7 @@ const getAvailableWords = (board) => {
     let dictArr = dictionary.split(' ');
     let trie = new MakeTrie(dictArr);
     let wordList = Array.from(Words(toMatrix(board, 4), trie));
-    console.log("getAvailableWords -> wordList", wordList);
+    //console.log("getAvailableWords -> wordList", wordList);
     return (wordList);
 
 }

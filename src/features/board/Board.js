@@ -34,6 +34,9 @@ function Board() {
 
     return (
         <div className='board-wrap'>
+            <div className='output'>
+                {chars.map((char, idx) => <Output key={idx} char={char} />)}
+            </div>
             <div className='board'>
                 {tiles.map((tile, idx) => {
                     if (active.length > 0) {
@@ -49,11 +52,9 @@ function Board() {
                     )
                 })}
             </div>
-            <div className='char'>
-                {chars.map((char, idx) => <Output key={idx} char={char} />)}
-            </div>
 
-            <button onClick={() => dispatch(compareWordList())}>CALC</button>
+
+            {/* <button onClick={() => dispatch(compareWordList())}>CALC</button>
 
             <div className='wordlist' style={{ marginTop: '20px' }}>
                 <h3>USER Words</h3>
@@ -73,7 +74,7 @@ function Board() {
             <div className='wordlist' style={{ marginTop: '20px' }}>
                 <h3>Bad Words</h3>
                 {badWords.map((char, idx) => <p key={idx}>{char}</p>)}
-            </div>
+            </div> */}
 
         </div>
     )

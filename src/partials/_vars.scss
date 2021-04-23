@@ -1,5 +1,5 @@
 $square: 150px;
-$board: $square * 4;
+$board: ($square * 4) + 6; // double outer border width
 
 // color
 $brightGreen: #9acd32;

@@ -1,6 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBoard, compareWordList, saveWords, selectAIWords, selectBoard, selectChar, selectCurrent, selectDisabled, selectDuplicated, selectNotInDictionary, selectWordList, selectAllWords } from '../board/boardSlice';
+import {
+    clearBoard,
+    compareWordList,
+    saveWords,
+    selectAIWords,
+    selectAllWords,
+    selectBoard,
+    selectChar,
+    selectCurrent,
+    selectDisabled,
+    selectDuplicated,
+    selectNotInDictionary,
+    selectWordList
+} from '../board/boardSlice';
 import Output from '../output/Output';
 import Square from '../square/Square';
 import Words from '../words/Words';
@@ -36,6 +49,11 @@ function Board() {
         }
     }
 
+    const showScoreCard = () => {
+        dispatch(compareWordList());
+        setShowScore(true);
+    }
+
     return (
         <div className='board-wrap'>
             <div className='output'>
@@ -57,6 +75,7 @@ function Board() {
                 })}
 
             </div>
+            <button onClick={showScoreCard}>SCORE</button>
 
             {
                 showScore && (
@@ -64,37 +83,14 @@ function Board() {
                         <div className='scorecard__inner'>
                             <Words list={AIWords} title='A.I' />
                             <Words list={allWords} title='All Words' />
-                            <Words list={allWords} title='Your Words' />
-                            <Words list={allWords} title='Duplicates' />
-                            <Words list={allWords} title='Bad Words' />
+                            <Words list={wordList} title='Your Words' />
+                            <Words list={duplicates} title='Duplicates' />
+                            <Words list={badWords} title='Bad Words' />
                         </div>
+                        <button onClick={() => setShowScore(false)}>GAME</button>
                     </div>
                 )
             }
-
-
-            {/* <button onClick={() => dispatch(compareWordList())}>CALC</button>
-
-            <div className='wordlist' style={{ marginTop: '20px' }}>
-                <h3>USER Words</h3>
-                {wordList.map((char, idx) => <p key={idx}>{char}</p>)}
-            </div>
-
-            <div className='wordlist' style={{ marginTop: '20px' }}>
-                <h3>AI Words</h3>
-                {AIWords.map((char, idx) => <p key={idx}>{char}</p>)}
-            </div>
-
-            <div className='wordlist' style={{ marginTop: '20px' }}>
-                <h3>Duplicated Words</h3>
-                {duplicates.map((char, idx) => <p key={idx}>{char}</p>)}
-            </div>
-
-            <div className='wordlist' style={{ marginTop: '20px' }}>
-                <h3>Bad Words</h3>
-                {badWords.map((char, idx) => <p key={idx}>{char}</p>)}
-            </div> */}
-
         </div>
     )
 }

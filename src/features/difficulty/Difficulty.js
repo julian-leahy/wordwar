@@ -1,14 +1,17 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { difficulty, AIWords } from '../board/boardSlice';
+import { findWords, difficulty, AIWords } from '../board/boardSlice';
 
-function Difficulty() {
+function Difficulty({ toggle }) {
 
     const dispatch = useDispatch();
 
     const setDifficulty = (level) => {
+        dispatch(findWords());
         dispatch(difficulty(level));
         dispatch(AIWords());
+        toggle();
+
     }
 
     return (

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBoard, compareWordList, findWords, saveWords, selectAIWords, selectBoard, selectChar, selectCurrent, selectDisabled, selectWordList, selectDuplicated, selectNotInDictionary } from '../board/boardSlice';
-import Difficulty from '../difficulty/Difficulty';
+import { clearBoard, compareWordList, saveWords, selectAIWords, selectBoard, selectChar, selectCurrent, selectDisabled, selectDuplicated, selectNotInDictionary, selectWordList } from '../board/boardSlice';
 import Output from '../output/Output';
 import Square from '../square/Square';
 import './Board.scss';
@@ -23,7 +22,6 @@ function Board() {
     // only run once!
     useEffect(() => {
         document.addEventListener('keydown', handleEnter);
-        dispatch(findWords());
         // eslint-disable-next-line 
     }, [])
 
@@ -36,7 +34,6 @@ function Board() {
 
     return (
         <div className='board-wrap'>
-            <Difficulty />
             <div className='board'>
                 {tiles.map((tile, idx) => {
                     if (active.length > 0) {

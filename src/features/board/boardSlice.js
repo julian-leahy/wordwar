@@ -137,12 +137,12 @@ export const compareWordList = () => (dispatch, getState) => {
     dispatch(duplicatedWords(dup))
 
     // users dups removed
-    userWords = userWords.filter(val => !AIWords.includes(val));
+    userWords = userWords.filter(val => !dup.includes(val));
     dispatch(userListUpdate(userWords));
 
     // AI dup removed
-    AIWords = AIWords.filter(val => !userWords.includes(val));
-    dispatch(aiWords(AIWords))
+    AIWords = AIWords.filter(val => !dup.includes(val));
+    dispatch(aiWords(AIWords));
 
 }
 

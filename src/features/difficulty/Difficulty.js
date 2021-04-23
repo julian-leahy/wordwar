@@ -18,18 +18,16 @@ function Difficulty({ toggle }) {
     return (
         <div className='difficulty'>
             <div className='difficulty-inner'>
-                <div className='title'>
-                    Word War
-            </div>
+                <div className='title'> Word War</div>
                 <div className='btn-group'>
                     <button className="button" aria-label="Level Easy" onClick={() => setDifficulty('easy')}>
                         Easy
-	                <div className="button__horizontal"></div>
+	                    <div className="button__horizontal"></div>
                         <div className="button__vertical"></div>
                     </button>
                     <button className="button" aria-label="Level Hard" onClick={() => setDifficulty('hard')}>
                         Hard
-	                <div className="button__horizontal"></div>
+	                    <div className="button__horizontal"></div>
                         <div className="button__vertical"></div>
                     </button>
                     <button className="button" aria-label="Level Expert" onClick={() => setDifficulty('expert')}>

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearBoard, findWords, saveWords, selectBoard, selectChar, selectCurrent, selectDisabled, selectWordList } from '../board/boardSlice';
+import { clearBoard, compareWordList, findWords, saveWords, selectAIWords, selectBoard, selectChar, selectCurrent, selectDisabled, selectWordList, selectDuplicated, selectNotInDictionary } from '../board/boardSlice';
 import Difficulty from '../difficulty/Difficulty';
 import Output from '../output/Output';
 import Square from '../square/Square';
@@ -16,6 +16,9 @@ function Board() {
     const active = useSelector(selectDisabled);
     const current = useSelector(selectCurrent);
     const wordList = useSelector(selectWordList);
+    const AIWords = useSelector(selectAIWords);
+    const duplicates = useSelector(selectDuplicated);
+    const badWords = useSelector(selectNotInDictionary);
 
     // only run once!
     useEffect(() => {
@@ -53,9 +56,28 @@ function Board() {
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
             </div>
 
-            <div className='wordlist'>
+            <button onClick={() => dispatch(compareWordList())}>CALC</button>
+
+            <div className='wordlist' style={{ marginTop: '20px' }}>
+                <h3>USER Words</h3>
                 {wordList.map((char, idx) => <p key={idx}>{char}</p>)}
             </div>
+
+            <div className='wordlist' style={{ marginTop: '20px' }}>
+                <h3>AI Words</h3>
+                {AIWords.map((char, idx) => <p key={idx}>{char}</p>)}
+            </div>
+
+            <div className='wordlist' style={{ marginTop: '20px' }}>
+                <h3>Duplicated Words</h3>
+                {duplicates.map((char, idx) => <p key={idx}>{char}</p>)}
+            </div>
+
+            <div className='wordlist' style={{ marginTop: '20px' }}>
+                <h3>Bad Words</h3>
+                {badWords.map((char, idx) => <p key={idx}>{char}</p>)}
+            </div>
+
         </div>
     )
 }

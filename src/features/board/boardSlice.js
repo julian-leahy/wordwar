@@ -28,8 +28,8 @@ export const boardSlice = createSlice({
     name: 'board',
     initialState,
     reducers: {
-        isNewGame: (state) => {
-            state.newGame = !state.newGame
+        isNewGame: (state, action) => {
+            state.newGame = action.payload
         },
         setBoard: (state, action) => {
             state.tiles = action.payload

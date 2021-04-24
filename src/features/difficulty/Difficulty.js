@@ -1,9 +1,9 @@
 import React from 'react';
 import './Difficulty.scss';
 import { useDispatch } from 'react-redux';
-import { findWords, difficulty, AIWords } from '../board/boardSlice';
+import { findWords, difficulty, AIWords, isNewGame } from '../board/boardSlice';
 
-function Difficulty({ toggle }) {
+function Difficulty() {
 
     const dispatch = useDispatch();
 
@@ -11,8 +11,7 @@ function Difficulty({ toggle }) {
         dispatch(findWords());
         dispatch(difficulty(level));
         dispatch(AIWords());
-        toggle();
-
+        dispatch(isNewGame(false))
     }
 
     return (

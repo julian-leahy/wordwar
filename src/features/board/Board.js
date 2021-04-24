@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     clearBoard,
+    generateBoard,
     saveWords,
     selectBoard,
     selectChar,
@@ -15,7 +16,7 @@ import './Board.scss';
 
 
 let disabled, selected;
-let time = 30;
+let time = 600;
 
 function Board() {
 
@@ -61,6 +62,7 @@ function Board() {
             <div className='output'>
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
             </div>
+            <button onClick={() => dispatch(generateBoard())}>FOO</button>
             <div className='board'>
                 {tiles.map((tile, idx) => {
                     if (active.length > 0) {
@@ -84,6 +86,7 @@ function Board() {
                     {isActive && seconds === 0 ? setIsActive(false) : seconds}
                 </div>
             </div>
+
 
             {!isActive && <Scorecard />}
         </div>

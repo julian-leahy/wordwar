@@ -1,6 +1,6 @@
 /** configured like Boogle 🎲 */
 
-const letters = [
+export const letters = [
     {
         tile: ['R', 'I', 'F', 'O', 'B', 'X']
     },
@@ -51,24 +51,28 @@ const letters = [
     }
 ]
 
+
+let lettersCopy = JSON.parse(JSON.stringify(letters));
+
 /**
  * 
  * @param {array} a 
  * @returns shuffled array with a random character from each element
  */
-const shuffleArray = (a) => {
+export const shuffleArray = (a) => {
     const temp = [];
 
     while (a.length !== 0) {
         const randomIndex = Math.floor(Math.random() * a.length);
-        temp.push(letters[randomIndex]);
-        letters.splice(randomIndex, 1);
+        temp.push(a[randomIndex]);
+        a.splice(randomIndex, 1);
     }
 
     const tilesArray = [];
     temp.forEach(({ tile }) => tilesArray.push(tile[Math.floor(Math.random() * 6)]));
+
     return tilesArray;
 }
 
-export const shuffledTiles = shuffleArray(letters)
+export const shuffledTiles = shuffleArray(lettersCopy)
 

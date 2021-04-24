@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import AIGenerateWords from "../../app/AIGenerateWords";
 import getAvailableWords from './../../app/findAllWords';
-import { shuffledTiles } from './../../app/letters';
+import { shuffledTiles, letters, shuffleArray } from './../../app/letters';
 import { dictionary } from './../../app/dictionary';
 import scoreGuide from "../../app/scoreGuide";
 
+
 const initialState = {
+    letters: letters,
     tiles: shuffledTiles,
     chars: [],
     disabled: [],
@@ -24,8 +26,8 @@ export const boardSlice = createSlice({
     name: 'board',
     initialState,
     reducers: {
-        setBoard: (state) => {
-            state.tiles = state
+        setBoard: (state, action) => {
+            state.tiles = action.payload
         },
         // add selected character to array
         addChar: (state, action) => {
@@ -102,6 +104,14 @@ export const selectDuplicated = (state) => state.board.duplicated;
 export const selectNotInDictionary = (state) => state.board.badWords;
 export const selectUserScore = (state) => state.board.userScore;
 export const selectAIScore = (state) => state.board.AIScore;
+export const selectLetters = (state) => state.board.letters;
+
+export const generateBoard = () => (dispatch, getState) => {
+    const letters = selectLetters(getState())
+    let lettersCopy = JSON.parse(JSON.stringify(letters));
+    const shuffle = shuffleArray(lettersCopy)
+    dispatch(setBoard(shuffle))
+}
 
 // finds all available words from current board state
 export const findWords = () => (dispatch, getState) => {

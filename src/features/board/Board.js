@@ -7,7 +7,10 @@ import {
     selectBoard,
     selectChar,
     selectCurrent,
-    selectDisabled
+    selectDisabled,
+    findWords,
+    AIWords,
+    clearAll
 } from '../board/boardSlice';
 import Output from '../output/Output';
 import Scorecard from '../scorecard/Scorecard';
@@ -16,7 +19,7 @@ import './Board.scss';
 
 
 let disabled, selected;
-let time = 600;
+let time = 20;
 
 function Board() {
 
@@ -25,6 +28,7 @@ function Board() {
     const [timerWarning, setTimerWarning] = useState('#9acd32')
 
     const dispatch = useDispatch();
+
     const tiles = useSelector(selectBoard);
     const chars = useSelector(selectChar);
     const active = useSelector(selectDisabled);
@@ -34,6 +38,7 @@ function Board() {
     // only run once!
     useEffect(() => {
         document.addEventListener('keydown', handleEnter);
+        dispatch(generateBoard())
         // eslint-disable-next-line 
     }, [])
 
@@ -50,6 +55,7 @@ function Board() {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
+
     const handleEnter = (e) => {
         if (e.key === 'Enter') {
             dispatch(saveWords());
@@ -57,12 +63,23 @@ function Board() {
         }
     }
 
+    // reset round
+    const reset = () => {
+        dispatch(clearAll());
+        dispatch(generateBoard());
+        dispatch(findWords());
+        dispatch(AIWords());
+        setSeconds(20);
+        setIsActive(true);
+
+    }
+
     return (
         <div className='board-wrap'>
             <div className='output'>
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
             </div>
-            <button onClick={() => dispatch(generateBoard())}>FOO</button>
+            <button className='foo' onClick={reset}>FOO</button>
             <div className='board'>
                 {tiles.map((tile, idx) => {
                     if (active.length > 0) {

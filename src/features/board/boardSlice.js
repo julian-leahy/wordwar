@@ -85,12 +85,22 @@ export const boardSlice = createSlice({
         },
         AIScore: (state, action) => {
             state.AIScore += action.payload
+        },
+        // reset round
+        clearAll: (state) => {
+            state.chars = [];
+            state.wordList = [];
+            state.disabled = [];
+            state.current = [];
+            state.AI = [];
+            state.duplicated = [];
+            state.badWords = [];
         }
 
     }
 })
 
-export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore } = boardSlice.actions;
+export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll } = boardSlice.actions;
 
 export const selectBoard = (state) => state.board.tiles;
 export const selectChar = (state) => state.board.chars;
@@ -107,10 +117,10 @@ export const selectAIScore = (state) => state.board.AIScore;
 export const selectLetters = (state) => state.board.letters;
 
 export const generateBoard = () => (dispatch, getState) => {
-    const letters = selectLetters(getState())
+    const letters = selectLetters(getState());
     let lettersCopy = JSON.parse(JSON.stringify(letters));
     const shuffle = shuffleArray(lettersCopy)
-    dispatch(setBoard(shuffle))
+    dispatch(setBoard(shuffle));
 }
 
 // finds all available words from current board state

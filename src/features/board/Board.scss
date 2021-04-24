@@ -40,3 +40,9 @@
         color: $brightGreen;
     }
 }
+
+.foo {
+    position: absolute;
+    top: 0;
+    z-index: 9999;
+}

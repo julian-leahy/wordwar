@@ -7,6 +7,7 @@ import scoreGuide from "../../app/scoreGuide";
 
 
 const initialState = {
+    newGame: true,
     letters: letters,
     tiles: shuffledTiles,
     chars: [],
@@ -27,6 +28,9 @@ export const boardSlice = createSlice({
     name: 'board',
     initialState,
     reducers: {
+        isNewGame: (state) => {
+            state.newGame = !state.newGame
+        },
         setBoard: (state, action) => {
             state.tiles = action.payload
         },
@@ -104,8 +108,9 @@ export const boardSlice = createSlice({
     }
 })
 
-export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll, incrementRound } = boardSlice.actions;
+export const { isNewGame, setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll, incrementRound } = boardSlice.actions;
 
+export const selectGame = (state) => state.board.newGame;
 export const selectBoard = (state) => state.board.tiles;
 export const selectChar = (state) => state.board.chars;
 export const selectDisabled = (state) => state.board.disabled;

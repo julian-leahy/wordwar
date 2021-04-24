@@ -20,6 +20,7 @@ const initialState = {
     badWords: [],
     userScore: 0,
     AIScore: 0,
+    rounds: 0
 }
 
 export const boardSlice = createSlice({
@@ -95,12 +96,15 @@ export const boardSlice = createSlice({
             state.AI = [];
             state.duplicated = [];
             state.badWords = [];
+        },
+        incrementRound: (state) => {
+            state.rounds += 1
         }
 
     }
 })
 
-export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll } = boardSlice.actions;
+export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll, incrementRound } = boardSlice.actions;
 
 export const selectBoard = (state) => state.board.tiles;
 export const selectChar = (state) => state.board.chars;
@@ -115,6 +119,7 @@ export const selectNotInDictionary = (state) => state.board.badWords;
 export const selectUserScore = (state) => state.board.userScore;
 export const selectAIScore = (state) => state.board.AIScore;
 export const selectLetters = (state) => state.board.letters;
+export const selectRound = (state) => state.board.rounds;
 
 export const generateBoard = () => (dispatch, getState) => {
     const letters = selectLetters(getState());

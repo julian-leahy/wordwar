@@ -10,7 +10,8 @@ import {
     selectDisabled,
     findWords,
     AIWords,
-    clearAll
+    clearAll,
+    incrementRound
 } from '../board/boardSlice';
 import Output from '../output/Output';
 import Scorecard from '../scorecard/Scorecard';
@@ -69,6 +70,7 @@ function Board() {
         dispatch(generateBoard());
         dispatch(findWords());
         dispatch(AIWords());
+        dispatch(incrementRound());
         setSeconds(20);
         setIsActive(true);
     }

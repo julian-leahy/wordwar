@@ -10,7 +10,8 @@ import {
     compareWordList,
     selectUserScore,
     selectAIScore,
-    calcScore
+    calcScore,
+    selectRound
 } from '../board/boardSlice';
 
 import Words from '../words/Words';
@@ -33,7 +34,8 @@ function Scorecard({ round }) {
     const duplicates = useSelector(selectDuplicated);
     const badWords = useSelector(selectNotInDictionary);
     const userScore = useSelector(selectUserScore);
-    const AIScore = useSelector(selectAIScore)
+    const AIScore = useSelector(selectAIScore);
+    const rounds = useSelector(selectRound);
 
     return (
         <div className='scorecard'>
@@ -41,7 +43,7 @@ function Scorecard({ round }) {
                 <div className='scorecard__inner-score'>
                     <div className='user score'>Players Score: <span className='pts'>{userScore} pts.</span></div>
                     <div className='AI score'>A.I Score: <span className='pts'>{AIScore} pts.</span></div>
-                    <div className='round score' onClick={round}>Next Round</div>
+                    <div className='round score' onClick={round}>{rounds === 1 ? 'Game Over' : 'Next Round'}</div>
                 </div>
                 <div className='scorecard__inner-words'>
                     <Words list={AIWords} title='A.I' />

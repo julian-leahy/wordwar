@@ -15,7 +15,7 @@ import './Board.scss';
 
 
 let disabled, selected;
-let time = 120;
+let time = 30;
 
 function Board() {
 

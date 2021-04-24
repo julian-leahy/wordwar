@@ -6,7 +6,10 @@ import {
     selectDuplicated,
     selectNotInDictionary,
     selectWordList,
-    compareWordList
+    compareWordList,
+    selectUserScore,
+    selectAIScore,
+    calcScore
 } from '../board/boardSlice';
 
 import Words from '../words/Words';
@@ -19,6 +22,7 @@ function Scorecard() {
     // only run once!
     useEffect(() => {
         dispatch(compareWordList());
+        dispatch(calcScore());
         // eslint-disable-next-line 
     }, [])
 
@@ -27,10 +31,13 @@ function Scorecard() {
     const AIWords = useSelector(selectAIWords);
     const duplicates = useSelector(selectDuplicated);
     const badWords = useSelector(selectNotInDictionary);
+    const userScore = useSelector(selectUserScore);
+    const AIScore = useSelector(selectAIScore)
 
     return (
         <div className='scorecard'>
             <div className='scorecard__inner'>
+                <p>SCORE: {userScore} || {AIScore}</p>
                 <Words list={AIWords} title='A.I' />
                 <Words list={allWords} title='All Words' />
                 <Words list={wordList} title='Your Words' />

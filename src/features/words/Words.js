@@ -6,7 +6,7 @@ function Words({ list, title }) {
         <div className='word-list'>
             <h3 className='word-list__title'>{title}</h3>
             {
-                list.map((word, idx) => <span key={idx}> {word} </span>)
+                list.length === 0 ? 'None Found!' : list.map((word, idx) => <span key={idx}> {word} </span>)
             }
         </div>
     )

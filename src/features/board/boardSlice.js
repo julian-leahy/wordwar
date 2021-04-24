@@ -3,6 +3,7 @@ import AIGenerateWords from "../../app/AIGenerateWords";
 import getAvailableWords from './../../app/findAllWords';
 import { shuffledTiles } from './../../app/letters';
 import { dictionary } from './../../app/dictionary';
+import scoreGuide from "../../app/scoreGuide";
 
 const initialState = {
     tiles: shuffledTiles,
@@ -11,10 +12,12 @@ const initialState = {
     current: [],
     wordList: [], // players words
     allWords: [],
-    difficulty: 'easy',
+    difficulty: 'easy', // easy - hard - expert
     AI: [], // 🤖 words
     duplicated: [], // words in AI and usersList
-    badWords: []
+    badWords: [],
+    userScore: 0,
+    AIScore: 0,
 }
 
 export const boardSlice = createSlice({
@@ -74,12 +77,18 @@ export const boardSlice = createSlice({
         // list of words not in dictionary
         notInDictionary: (state, action) => {
             state.badWords = action.payload
+        },
+        userScore: (state, action) => {
+            state.userScore += action.payload
+        },
+        AIScore: (state, action) => {
+            state.AIScore += action.payload
         }
 
     }
 })
 
-export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary } = boardSlice.actions;
+export const { setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore } = boardSlice.actions;
 
 export const selectBoard = (state) => state.board.tiles;
 export const selectChar = (state) => state.board.chars;
@@ -91,6 +100,8 @@ export const selectDifficulty = (state) => state.board.difficulty;
 export const selectAIWords = (state) => state.board.AI;
 export const selectDuplicated = (state) => state.board.duplicated;
 export const selectNotInDictionary = (state) => state.board.badWords;
+export const selectUserScore = (state) => state.board.userScore;
+export const selectAIScore = (state) => state.board.AIScore;
 
 // finds all available words from current board state
 export const findWords = () => (dispatch, getState) => {
@@ -120,6 +131,8 @@ export const AIWords = () => (dispatch, getState) => {
     dispatch(aiWords(AI))
 };
 
+// removes words not found in dictionary
+// compares user and AI words and remove duplicate
 export const compareWordList = () => (dispatch, getState) => {
     let dict = dictionary.split(' ')
     let userWords = selectWordList(getState());
@@ -143,6 +156,20 @@ export const compareWordList = () => (dispatch, getState) => {
     // AI dup removed
     AIWords = AIWords.filter(val => !dup.includes(val));
     dispatch(aiWords(AIWords));
+
+}
+
+// calculates scores
+export const calcScore = () => (dispatch, getState) => {
+
+    let userWords = selectWordList(getState());
+    let AIWords = selectAIWords(getState());
+
+    const user = userWords.length > 0 ? userWords.map(word => scoreGuide(word)).reduce((a, b) => a + b) : 0;
+    const AI = AIWords.length > 0 ? AIWords.map(word => scoreGuide(word)).reduce((a, b) => a + b) : 0;
+
+    dispatch(userScore(user));
+    dispatch(AIScore(AI));
 
 }
 

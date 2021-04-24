@@ -45,7 +45,7 @@ function Board() {
     useEffect(() => {
         let interval = null;
         if (isActive) {
-            if (seconds <= 5) setTimerWarning('red');
+            seconds <= 5 ? setTimerWarning('red') : setTimerWarning('#9acd32')
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
             }, 1000);

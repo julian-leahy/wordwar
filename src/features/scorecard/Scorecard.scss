@@ -1,12 +1,12 @@
 @import "./../../partials/vars";
 
 .scorecard {
-    background-color: #000;
+    background-color: $dark;
     justify-content: center;
     width: 100vw;
     align-items: center;
     position: absolute;
-    color: #000;
+    color: $dark;
     display: flex;
     height: 100vh;
     top: 0;
@@ -21,7 +21,7 @@
 
 .scorecard__inner-score {
     display: flex;
-    color: #fff;
+    color: $light;
     font-size: 2rem;
     justify-content: space-evenly;
     & .score {
@@ -30,7 +30,7 @@
         margin-bottom: 30px;
     }
     & .pts {
-        color: #fff;
+        color: $light;
     }
     & .user {
         color: $brightBlue;
@@ -42,8 +42,8 @@
         cursor: pointer;
         transition: all 0.3s;
         &:hover {
-            background-color: #fff;
-            color: #000;
+            background-color: $light;
+            color: $dark;
         }
     }
 }
@@ -52,7 +52,7 @@
     display: flex;
     width: 100%;
     max-height: 80vh;
-    background-color: #fff;
+    background-color: $light;
     border: 3px solid $offYellow;
     overflow: auto;
 }

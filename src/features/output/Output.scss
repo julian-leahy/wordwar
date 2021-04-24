@@ -1,9 +1,11 @@
+@import "./.././../partials/vars";
+
 .output {
     position: absolute;
     top: 35px;
     .char {
         font-size: 3rem;
-        color: #fff;
+        color: $light;
         letter-spacing: 2px;
     }
 }

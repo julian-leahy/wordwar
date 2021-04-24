@@ -6,13 +6,13 @@
     align-items: center;
     width: $square;
     height: $square;
-    background-color: #fff;
+    background-color: $light;
     border: 1px solid #ccc;
     font-size: 3rem;
     transition: background-color 300ms;
     &:hover:not(.disabled) {
         background-color: $dark;
-        color: #fff;
+        color: $light;
         cursor: pointer;
     }
     &.disabled {

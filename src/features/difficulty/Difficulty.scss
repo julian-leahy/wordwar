@@ -20,7 +20,7 @@
 
 .title {
     font-size: 6rem;
-    color: #fff;
+    color: $light;
     padding-bottom: 20px;
     font-family: "Neucha", cursive;
 }
@@ -40,7 +40,7 @@
     appearance: none;
     border: 0;
     color: $brightGreen;
-    background: #000;
+    background: $dark;
     text-transform: uppercase;
     letter-spacing: 0.25em;
     outline: none;

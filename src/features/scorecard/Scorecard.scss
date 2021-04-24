@@ -3,7 +3,7 @@
 .scorecard {
     background-color: #000;
     justify-content: center;
-    max-width: $maxWidth;
+    width: 100vw;
     align-items: center;
     position: absolute;
     color: #000;
@@ -14,6 +14,7 @@
 }
 
 .scorecard__inner {
+    max-width: $maxWidth;
     display: flex;
     flex-direction: column;
 }
@@ -32,10 +33,18 @@
         color: #fff;
     }
     & .user {
-        color: aqua;
+        color: $brightBlue;
     }
     & .AI {
         color: $brightGreen;
+    }
+    & .round {
+        cursor: pointer;
+        transition: all 0.3s;
+        &:hover {
+            background-color: #fff;
+            color: #000;
+        }
     }
 }
 

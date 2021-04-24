@@ -19,7 +19,7 @@ import './Board.scss';
 
 
 let disabled, selected;
-let time = 20;
+let time = 2;
 
 function Board() {
 
@@ -71,7 +71,6 @@ function Board() {
         dispatch(AIWords());
         setSeconds(20);
         setIsActive(true);
-
     }
 
     return (
@@ -79,7 +78,6 @@ function Board() {
             <div className='output'>
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
             </div>
-            <button className='foo' onClick={reset}>FOO</button>
             <div className='board'>
                 {tiles.map((tile, idx) => {
                     if (active.length > 0) {
@@ -105,7 +103,7 @@ function Board() {
             </div>
 
 
-            {!isActive && <Scorecard />}
+            {!isActive && <Scorecard round={reset} />}
         </div>
     )
 }

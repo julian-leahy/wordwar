@@ -1,3 +1,7 @@
+// app
+$maxWidth: 1200px;
+
+// board
 $square: 150px;
 $board: ($square * 4) + 6; // double outer border width
 

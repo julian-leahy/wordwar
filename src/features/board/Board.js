@@ -15,11 +15,13 @@ import './Board.scss';
 
 
 let disabled, selected;
+let time = 120;
 
 function Board() {
 
-    const [seconds, setSeconds] = useState(0);
+    const [seconds, setSeconds] = useState(time);
     const [isActive, setIsActive] = useState(true);
+    const [timerWarning, setTimerWarning] = useState('#9acd32')
 
     const dispatch = useDispatch();
     const tiles = useSelector(selectBoard);
@@ -37,8 +39,9 @@ function Board() {
     useEffect(() => {
         let interval = null;
         if (isActive) {
+            if (seconds <= 5) setTimerWarning('red');
             interval = setInterval(() => {
-                setSeconds(seconds => seconds + 1);
+                setSeconds(seconds => seconds - 1);
             }, 1000);
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
@@ -74,11 +77,12 @@ function Board() {
                 })}
 
             </div>
-            <div className="time" style={{ color: '#fff' }}>
-                {
-                    isActive && seconds === 60 ? setIsActive(false) : seconds
-
-                }
+            <div className="timer">
+                <div className='timer__inner' style={{
+                    color: timerWarning
+                }}>
+                    {isActive && seconds === 0 ? setIsActive(false) : seconds}
+                </div>
             </div>
 
             {!isActive && <Scorecard />}

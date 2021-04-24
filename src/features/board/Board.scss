@@ -1,17 +1,19 @@
 @import "./../../partials/vars";
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 
 .board-wrap {
-    width: 100vw;
+    position: relative;
+    max-width: $maxWidth;
     height: 100vh;
     background-color: #000;
     overflow: hidden;
     display: flex;
-    justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
 .board {
+    margin-top: 100px;
     position: relative;
     width: $board;
     display: flex;
@@ -20,7 +22,7 @@
 }
 
 .scorecard {
-    width: 100vw;
+    max-width: $maxWidth;
     height: 100vh;
     position: absolute;
     top: 0;
@@ -33,7 +35,7 @@
     &__inner {
         display: flex;
         width: 90%;
-        max-height: 80%;
+        max-height: 80vh;
         background-color: #fff;
         color: #000;
         border: 3px solid $offYellow;
@@ -44,4 +46,24 @@
 .scorecard__inner > div {
     padding: 60px 20px;
     width: 100%;
+}
+
+.timer {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    font-size: 3rem;
+    top: 100px;
+    right: 100px;
+
+    &__inner {
+        font-family: "Orbitron", sans-serif;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid $offYellow;
+        color: $brightGreen;
+    }
 }

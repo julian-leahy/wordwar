@@ -2,39 +2,31 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     clearBoard,
-    compareWordList,
     saveWords,
-    selectAIWords,
-    selectAllWords,
     selectBoard,
     selectChar,
     selectCurrent,
-    selectDisabled,
-    selectDuplicated,
-    selectNotInDictionary,
-    selectWordList
+    selectDisabled
 } from '../board/boardSlice';
 import Output from '../output/Output';
+import Scorecard from '../scorecard/Scorecard';
 import Square from '../square/Square';
-import Words from '../words/Words';
 import './Board.scss';
+
 
 let disabled, selected;
 
 function Board() {
 
-    const [showScore, setShowScore] = useState(false)
+    const [seconds, setSeconds] = useState(0);
+    const [isActive, setIsActive] = useState(true);
 
     const dispatch = useDispatch();
     const tiles = useSelector(selectBoard);
     const chars = useSelector(selectChar);
-    const allWords = useSelector(selectAllWords);
     const active = useSelector(selectDisabled);
     const current = useSelector(selectCurrent);
-    const wordList = useSelector(selectWordList);
-    const AIWords = useSelector(selectAIWords);
-    const duplicates = useSelector(selectDuplicated);
-    const badWords = useSelector(selectNotInDictionary);
+
 
     // only run once!
     useEffect(() => {
@@ -42,16 +34,23 @@ function Board() {
         // eslint-disable-next-line 
     }, [])
 
+    useEffect(() => {
+        let interval = null;
+        if (isActive) {
+            interval = setInterval(() => {
+                setSeconds(seconds => seconds + 1);
+            }, 1000);
+        } else if (!isActive && seconds !== 0) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [isActive, seconds]);
+
     const handleEnter = (e) => {
         if (e.key === 'Enter') {
             dispatch(saveWords());
             dispatch(clearBoard());
         }
-    }
-
-    const showScoreCard = () => {
-        dispatch(compareWordList());
-        setShowScore(true);
     }
 
     return (
@@ -75,22 +74,14 @@ function Board() {
                 })}
 
             </div>
-            <button onClick={showScoreCard}>SCORE</button>
+            <div className="time" style={{ color: '#fff' }}>
+                {
+                    isActive && seconds === 60 ? setIsActive(false) : seconds
 
-            {
-                showScore && (
-                    <div className='scorecard'>
-                        <div className='scorecard__inner'>
-                            <Words list={AIWords} title='A.I' />
-                            <Words list={allWords} title='All Words' />
-                            <Words list={wordList} title='Your Words' />
-                            <Words list={duplicates} title='Duplicates' />
-                            <Words list={badWords} title='Bad Words' />
-                        </div>
-                        <button onClick={() => setShowScore(false)}>GAME</button>
-                    </div>
-                )
-            }
+                }
+            </div>
+
+            {!isActive && <Scorecard />}
         </div>
     )
 }

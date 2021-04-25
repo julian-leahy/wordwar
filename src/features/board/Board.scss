@@ -13,7 +13,7 @@
 }
 
 .board {
-    margin-top: 100px;
+    margin-top: 75px;
     position: relative;
     width: $board;
     display: flex;
@@ -26,7 +26,7 @@
     height: 100px;
     position: absolute;
     font-size: 3rem;
-    top: 100px;
+    top: 75px;
     right: 100px;
 
     &__inner {

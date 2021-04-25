@@ -41,14 +41,18 @@ function Scorecard({ round }) {
         <div className='scorecard'>
             <div className='scorecard__inner'>
                 <div className='scorecard__inner-score'>
-                    <div className='user score'>Players Score: <span className='pts'>{userScore} pts.</span></div>
-                    <div className='AI score'>A.I Score: <span className='pts'>{AIScore} pts.</span></div>
-                    <div className='round score' onClick={round}>{rounds === 3 ? 'Game Over' : 'Next Round'}</div>
+                    <div className='players-scores'>
+                        <div className='user score'>Players Score: <span className='pts'>{userScore} pts.</span></div>
+                        <div className='AI score'>A.I Score: <span className='pts'>{AIScore} pts.</span></div>
+                    </div>
+                    <div className='action'>
+                        <div className='round score' onClick={round}>{rounds === 3 ? 'Game Over' : 'Next Round'}</div>
+                    </div>
                 </div>
                 <div className='scorecard__inner-words'>
+                    <Words list={wordList} title='Your Words' />
                     <Words list={AIWords} title='A.I' />
                     <Words list={allWords} title='All Words' />
-                    <Words list={wordList} title='Your Words' />
                     <Words list={duplicates} title='Duplicates' />
                     <Words list={badWords} title='Bad Words' />
                 </div>

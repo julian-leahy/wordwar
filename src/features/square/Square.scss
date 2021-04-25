@@ -1,23 +1,23 @@
 @import "./../../partials/vars";
 
 .square {
-    display: flex;
     justify-content: center;
     align-items: center;
-    width: $square;
     height: $square;
+    width: $square;
+    display: flex;
     @media (max-width: $med) {
-        width: $square-sm;
         height: $square-sm;
+        width: $square-sm;
     }
-    background-color: $light;
-    border: 1px solid #ccc;
-    font-size: 3rem;
     transition: background-color 300ms;
+    border: 1px solid #ccc;
+    background-color: $light;
+    font-size: 3rem;
     &:hover:not(.disabled) {
         background-color: $dark;
-        color: $light;
         cursor: pointer;
+        color: $light;
     }
     &.disabled {
         background-color: lighten($dark, 85);

@@ -6,14 +6,14 @@ import './Square.scss';
 function Square({ tile, id, disabled, selected }) {
 
     const dispatch = useDispatch();
-    const disabledGroup = useSelector(selectDisabled)
+    const disabledGroup = useSelector(selectDisabled);
 
     const selectedChar = () => {
         // no selecting active or disabled items
-        if (selected || (disabledGroup.length > 0 && !disabledGroup.includes(id))) return
+        if (selected || (disabledGroup.length > 0 && !disabledGroup.includes(id))) return;
         dispatch(addChar(tile));
-        dispatch(isCurrent(id))
-        freeSquares(id)
+        dispatch(isCurrent(id));
+        freeSquares(id);
     }
 
     // checks for squares that are within 1 square of selected
@@ -23,7 +23,7 @@ function Square({ tile, id, disabled, selected }) {
         const up = index - 4;
         const down = index + 4;
         const validation = [[up, '^'], [down, 'v'], [index - 1, '<'], [up - 1, '<'], [down - 1, '<'], [index + 1, '>'], [up + 1, '>'], [down + 1, '>']];
-        validation.forEach(e => availableTiles(e))
+        validation.forEach(e => availableTiles(e));
     }
 
     const availableTiles = (arr = []) => {

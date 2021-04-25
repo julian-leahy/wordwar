@@ -3,30 +3,30 @@
 .scorecard {
     background-color: $dark;
     justify-content: center;
-    width: 100vw;
     align-items: center;
     position: absolute;
-    color: $dark;
     display: flex;
     height: 100vh;
-    top: 0;
+    width: 100vw;
+    color: $dark;
     z-index: 9;
+    top: 0;
 }
 
 .scorecard__inner {
+    flex-direction: column;
     max-width: $maxWidth;
     display: flex;
-    flex-direction: column;
 }
 
 .scorecard__inner-score {
-    position: relative;
     max-width: $maxWidth;
+    position: relative;
     display: flex;
     & .score {
         border: 3px solid $offYellow;
-        padding: 10px;
         margin-bottom: 30px;
+        padding: 10px;
     }
 }
 
@@ -43,13 +43,13 @@
 }
 
 .action {
-    color: white;
+    color: $light;
     & .round {
-        position: absolute;
-        top: 0;
-        right: 0;
-        cursor: pointer;
         transition: all 0.3s;
+        position: absolute;
+        cursor: pointer;
+        right: 0;
+        top: 0;
         &:hover {
             background-color: $light;
             color: $dark;
@@ -58,11 +58,11 @@
 }
 
 .scorecard__inner-words {
-    display: flex;
-    max-height: 80vh;
-    background-color: $light;
     border: 3px solid $offYellow;
+    background-color: $light;
+    max-height: 80vh;
     overflow: auto;
+    display: flex;
 }
 
 .scorecard__inner-words > div {

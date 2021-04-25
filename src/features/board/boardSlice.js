@@ -21,13 +21,14 @@ const initialState = {
     badWords: [],
     userScore: 0,
     AIScore: 0,
-    rounds: 0
+    rounds: 1
 }
 
 export const boardSlice = createSlice({
     name: 'board',
     initialState,
     reducers: {
+        resetAll: state => { },
         isNewGame: (state, action) => {
             state.newGame = action.payload
         },
@@ -108,7 +109,7 @@ export const boardSlice = createSlice({
     }
 })
 
-export const { isNewGame, setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll, incrementRound } = boardSlice.actions;
+export const { resetAll, isNewGame, setBoard, addChar, isActive, resetIsActive, isCurrent, clearBoard, saveWords, allWords, aiWords, difficulty, duplicatedWords, userListUpdate, notInDictionary, userScore, AIScore, clearAll, incrementRound } = boardSlice.actions;
 
 export const selectGame = (state) => state.board.newGame;
 export const selectBoard = (state) => state.board.tiles;

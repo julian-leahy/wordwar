@@ -11,7 +11,9 @@ import {
     findWords,
     AIWords,
     clearAll,
-    incrementRound
+    incrementRound,
+    selectRound,
+    resetAll
 } from '../board/boardSlice';
 import Output from '../output/Output';
 import Scorecard from '../scorecard/Scorecard';
@@ -20,11 +22,10 @@ import './Board.scss';
 
 
 let disabled, selected;
-let time = 2;
 
-function Board() {
+function Board({ roundTime }) {
 
-    const [seconds, setSeconds] = useState(time);
+    const [seconds, setSeconds] = useState(roundTime);
     const [isActive, setIsActive] = useState(true);
     const [timerWarning, setTimerWarning] = useState('#9acd32')
 
@@ -34,6 +35,7 @@ function Board() {
     const chars = useSelector(selectChar);
     const active = useSelector(selectDisabled);
     const current = useSelector(selectCurrent);
+    const currentRound = useSelector(selectRound);
 
 
     // only run once!
@@ -53,7 +55,9 @@ function Board() {
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
         }
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval)
+        };
     }, [isActive, seconds]);
 
 
@@ -66,13 +70,18 @@ function Board() {
 
     // reset round
     const reset = () => {
-        dispatch(clearAll());
-        dispatch(generateBoard());
-        dispatch(findWords());
-        dispatch(AIWords());
-        dispatch(incrementRound());
-        setSeconds(20);
-        setIsActive(true);
+        if (currentRound === 3) {
+            dispatch(resetAll())
+        } else {
+            dispatch(clearAll());
+            dispatch(generateBoard());
+            dispatch(findWords());
+            dispatch(AIWords());
+            dispatch(incrementRound());
+            setSeconds(roundTime);
+            setIsActive(true);
+        }
+
     }
 
     return (

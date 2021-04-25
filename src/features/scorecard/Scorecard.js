@@ -43,7 +43,7 @@ function Scorecard({ round }) {
                 <div className='scorecard__inner-score'>
                     <div className='user score'>Players Score: <span className='pts'>{userScore} pts.</span></div>
                     <div className='AI score'>A.I Score: <span className='pts'>{AIScore} pts.</span></div>
-                    <div className='round score' onClick={round}>{rounds === 1 ? 'Game Over' : 'Next Round'}</div>
+                    <div className='round score' onClick={round}>{rounds === 3 ? 'Game Over' : 'Next Round'}</div>
                 </div>
                 <div className='scorecard__inner-words'>
                     <Words list={AIWords} title='A.I' />

@@ -7,12 +7,15 @@ function Rules({ close }) {
             <div className='rules__inner'>
                 <p>Create words from the randomly assorted letters in the grid. The longer the word, the higher the point value of the word (press Enter to submit word).</p>
                 <p>A game consist of three rounds each lasting three minutes.</p>
-                <p>
-                    <table className='score-tables'>
+
+                <table className='score-tables'>
+                    <thead>
                         <tr>
                             <th>No. of Letters</th>
                             <th>Points per Word</th>
                         </tr>
+                    </thead>
+                    <tbody>
                         <tr>
                             <td>3</td>
                             <td>1</td>
@@ -37,8 +40,9 @@ function Rules({ close }) {
                             <td>8+</td>
                             <td>11</td>
                         </tr>
-                    </table>
-                </p>
+                    </tbody>
+                </table>
+
             </div>
             <button aria-label='close' onClick={close} className='btn-help close'>X</button>
         </div>

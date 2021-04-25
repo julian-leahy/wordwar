@@ -1,13 +1,20 @@
 // app
 $maxWidth: 1200px;
 
-// board
+// board full
 $square: 150px;
 $board: ($square * 4) + 6; // double outer border width
+
+// board smaller
+$square-sm: 100px;
+$board-sm: ($square-sm * 4) + 6; // double outer border width
+
+// media queries
+$med: 1020px;
 
 // color
 $brightGreen: #9acd32;
 $brightBlue: #00ffff;
 $offYellow: #b1b122;
-$dark: #1f1c1c;
+$dark: #000000;
 $light: #ffffff;

@@ -2,8 +2,9 @@
 
 .App {
     height: 100vh;
-    max-width: $maxWidth;
     margin: 0 auto;
+    max-width: $maxWidth;
     background: url(./assets/bg_1.jpg) center no-repeat $dark;
     background-size: contain;
+    overflow: hidden;
 }

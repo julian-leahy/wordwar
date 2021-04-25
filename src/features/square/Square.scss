@@ -6,6 +6,10 @@
     align-items: center;
     width: $square;
     height: $square;
+    @media (max-width: $med) {
+        width: $square-sm;
+        height: $square-sm;
+    }
     background-color: $light;
     border: 1px solid #ccc;
     font-size: 3rem;

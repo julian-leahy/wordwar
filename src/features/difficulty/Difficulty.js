@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import './Difficulty.scss';
 import { useDispatch } from 'react-redux';
-import { findWords, difficulty, AIWords, isNewGame } from '../board/boardSlice';
+import { AIWords, difficulty, findWords, isNewGame } from '../board/boardSlice';
+import CustomButton from '../buttons/CustomButton';
 import Rules from '../rules/Rules';
+import './Difficulty.scss';
 
 function Difficulty() {
 
@@ -23,23 +24,11 @@ function Difficulty() {
     return (
         <div className='difficulty'>
             <div className='difficulty-inner'>
-                <div className='title'> Word War</div>
+                <div className='title'>Word War</div>
                 <div className='btn-group'>
-                    <button className="button" aria-label="Level Easy" onClick={() => setDifficulty('easy')}>
-                        Easy
-	                    <div className="button__horizontal"></div>
-                        <div className="button__vertical"></div>
-                    </button>
-                    <button className="button" aria-label="Level Hard" onClick={() => setDifficulty('hard')}>
-                        Hard
-	                    <div className="button__horizontal"></div>
-                        <div className="button__vertical"></div>
-                    </button>
-                    <button className="button" aria-label="Level Expert" onClick={() => setDifficulty('expert')}>
-                        Expert
-	                    <div className="button__horizontal"></div>
-                        <div className="button__vertical"></div>
-                    </button>
+                    <CustomButton level='easy' set={setDifficulty} />
+                    <CustomButton level='hard' set={setDifficulty} />
+                    <CustomButton level='expert' set={setDifficulty} />
                 </div>
                 <button aria-label='open rules' onClick={toggleRules} className='btn-help show-rules'>Rules</button>
                 {showRules && <Rules close={toggleRules} />}

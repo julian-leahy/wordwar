@@ -2,109 +2,37 @@
 @import url("https://fonts.googleapis.com/css2?family=Neucha&display=swap");
 
 .difficulty {
-    width: 100%;
-    height: 100%;
-    display: flex;
     justify-content: center;
     align-items: center;
+    display: flex;
+    height: 100%;
+    width: 100%;
     &-inner {
-        position: relative;
+        background-color: rgba(0, 0, 0, 0.84);
         border: 3px solid $offYellow;
-        padding: 100px;
-        display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: rgba(0, 0, 0, 0.84);
+        position: relative;
+        padding: 100px;
+        display: flex;
         width: 600px;
     }
 }
 
 .title {
+    font-family: "Neucha", cursive;
+    padding-bottom: 20px;
     font-size: 6rem;
     color: $light;
-    padding-bottom: 20px;
-    font-family: "Neucha", cursive;
 }
 
 .btn-group {
     display: flex;
 }
 
-.button {
-    --offset: 10px;
-    --border-size: 2px;
-    margin: 20px;
-    font-size: 1.3rem;
-    display: block;
-    position: relative;
-    padding: 1.5em 3em;
-    appearance: none;
-    border: 0;
-    color: $brightGreen;
-    background: $dark;
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    outline: none;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 0;
-    box-shadow: inset 0 0 0 var(--border-size) currentcolor;
-
-    &__horizontal,
-    &__vertical {
-        position: absolute;
-        top: var(--horizontal-offset, 0);
-        right: var(--vertical-offset, 0);
-        bottom: var(--horizontal-offset, 0);
-        left: var(--vertical-offset, 0);
-        transition: transform 0.8s ease;
-        will-change: transform;
-
-        &::before {
-            content: "";
-            position: absolute;
-            border: inherit;
-        }
-    }
-
-    &__horizontal {
-        --vertical-offset: calc(var(--offset) * -1);
-        border-top: var(--border-size) solid currentcolor;
-        border-bottom: var(--border-size) solid currentcolor;
-
-        &::before {
-            top: calc(var(--vertical-offset) - var(--border-size));
-            bottom: calc(var(--vertical-offset) - var(--border-size));
-            left: calc(var(--vertical-offset) * -1);
-            right: calc(var(--vertical-offset) * -1);
-        }
-    }
-
-    &:hover &__horizontal {
-        transform: scaleX(0);
-    }
-
-    &__vertical {
-        --horizontal-offset: calc(var(--offset) * -1);
-        border-left: var(--border-size) solid currentcolor;
-        border-right: var(--border-size) solid currentcolor;
-
-        &::before {
-            top: calc(var(--horizontal-offset) * -1);
-            bottom: calc(var(--horizontal-offset) * -1);
-            left: calc(var(--horizontal-offset) - var(--border-size));
-            right: calc(var(--horizontal-offset) - var(--border-size));
-        }
-    }
-
-    &:hover &__vertical {
-        transform: scaleY(0);
-    }
-}
-
 .show-rules {
-    background-color: $dark;
     border-color: $offYellow;
+    background-color: $dark;
     color: $light;
     &:hover {
         color: $brightBlue;

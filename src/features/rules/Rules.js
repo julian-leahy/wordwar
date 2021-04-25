@@ -6,7 +6,7 @@ function Rules({ close }) {
         <div className='rules'>
             <div className='rules__inner'>
                 <p>Create words from the randomly assorted letters in the grid. The longer the word, the higher the point value of the word (press Enter to submit word).</p>
-                <p>A game consist of three rounds each lasting three minutes.</p>
+                <p>A game consists of three rounds, each lasting three minutes.</p>
 
                 <table className='score-tables'>
                     <thead>

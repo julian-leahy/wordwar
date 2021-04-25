@@ -1,0 +1,49 @@
+@import "./../../partials/vars";
+
+.rules {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: $light;
+    &__inner {
+        padding: 20px;
+        p {
+            padding-bottom: 10px;
+        }
+    }
+    .close {
+        background-color: $dark;
+        color: $light;
+        &:hover {
+            color: $brightBlue;
+        }
+    }
+}
+
+.score-tables {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.score-tables td,
+.score-tables th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.score-tables tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.score-tables tr:hover {
+    background-color: #ddd;
+}
+
+.score-tables th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: $dark;
+    color: $brightGreen;
+}

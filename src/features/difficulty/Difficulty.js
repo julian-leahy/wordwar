@@ -1,17 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Difficulty.scss';
 import { useDispatch } from 'react-redux';
 import { findWords, difficulty, AIWords, isNewGame } from '../board/boardSlice';
+import Rules from '../rules/Rules';
 
 function Difficulty() {
 
     const dispatch = useDispatch();
+    const [showRules, setShowRules] = useState(false)
 
     const setDifficulty = (level) => {
         dispatch(findWords());
         dispatch(difficulty(level));
         dispatch(AIWords());
         dispatch(isNewGame(false))
+    }
+
+    const toggleRules = () => {
+        setShowRules(!showRules)
     }
 
     return (
@@ -35,7 +41,10 @@ function Difficulty() {
                         <div className="button__vertical"></div>
                     </button>
                 </div>
+                <button aria-label='open rules' onClick={toggleRules} className='btn-help show-rules'>Rules</button>
+                {showRules && <Rules close={toggleRules} />}
             </div>
+
         </div>
     )
 }

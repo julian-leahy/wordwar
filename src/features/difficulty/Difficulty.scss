@@ -8,6 +8,7 @@
     justify-content: center;
     align-items: center;
     &-inner {
+        position: relative;
         border: 3px solid $offYellow;
         padding: 100px;
         display: flex;
@@ -98,5 +99,14 @@
 
     &:hover &__vertical {
         transform: scaleY(0);
+    }
+}
+
+.show-rules {
+    background-color: $dark;
+    border-color: $offYellow;
+    color: $light;
+    &:hover {
+        color: $brightBlue;
     }
 }

@@ -37,6 +37,16 @@ function Scorecard({ round }) {
     const AIScore = useSelector(selectAIScore);
     const rounds = useSelector(selectRound);
 
+    const displayWinner = () => {
+        if (userScore > AIScore) {
+            return 'Player Wins!'
+        } else if (AIScore > userScore) {
+            return 'A.I Wins!'
+        } else {
+            return 'The game was a draw!'
+        }
+    }
+
     return (
         <div className='scorecard'>
             <div className='scorecard__inner'>
@@ -46,7 +56,7 @@ function Scorecard({ round }) {
                         <div className='AI score'>A.I Score: <span className='pts'>{AIScore} pts.</span></div>
                     </div>
                     <div className='action'>
-                        <div className='round score' onClick={round}>{rounds === 3 ? 'Game Over' : 'Next Round'}</div>
+                        <div className='round score' onClick={round}>{rounds === 3 ? `Game Over. ${displayWinner()}` : 'Next Round'}</div>
                     </div>
                 </div>
                 <div className='scorecard__inner-words'>

@@ -1,11 +1,11 @@
 @import "./.././../partials/vars";
 
-.output {
+.board__output {
     position: absolute;
     top: 35px;
-    .char {
+    &-char {
+        letter-spacing: 2px;
         font-size: 3rem;
         color: $light;
-        letter-spacing: 2px;
     }
 }

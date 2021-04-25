@@ -1,60 +1,75 @@
 @import "./../../partials/vars";
 @import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
 
-.board-wrap {
-    position: relative;
-    max-width: $maxWidth;
-    height: 100vh;
+.board {
     background-color: $dark;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
     flex-direction: column;
+    max-width: $maxWidth;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+    display: flex;
 }
 
-.board {
-    margin-top: 75px;
+.board__grid {
     position: relative;
+    margin-top: 75px;
     width: $board;
     @media (max-width: $med) {
         width: $board-sm;
     }
-    display: flex;
-    flex-wrap: wrap;
     border: 3px solid $offYellow;
+    flex-wrap: wrap;
+    display: flex;
 }
 
 .timer {
-    width: 100px;
-    height: 100px;
     position: absolute;
     font-size: 3rem;
-    top: 75px;
+    height: 100px;
+    width: 100px;
     right: 100px;
+    top: 75px;
 
     @media (max-width: $med) {
-        width: 75px;
-        height: 75px;
         position: absolute;
         font-size: 3rem;
+        height: 90px;
+        width: 90px;
         top: 75px;
-        right: 50px;
+    }
+
+    @media (max-width: $small) {
+        top: -1000px;
     }
 
     &__inner {
         font-family: "Orbitron", sans-serif;
-        width: 100%;
-        height: 100%;
-        display: flex;
+        border: 3px solid $offYellow;
         justify-content: center;
         align-items: center;
-        border: 3px solid $offYellow;
         color: $brightGreen;
+        display: flex;
+        height: 100%;
+        width: 100%;
     }
 }
 
-.foo {
-    position: absolute;
-    top: 0;
-    z-index: 9999;
+.progress-mobile {
+    border: 2px solid $offYellow;
+    width: $board-sm;
+    display: none;
+    height: 10px;
+
+    @media (max-width: $small) {
+        display: block;
+    }
+
+    &__inner {
+        background: $offYellow;
+        transition: all 0.3s;
+        height: inherit;
+        height: 6px;
+    }
 }

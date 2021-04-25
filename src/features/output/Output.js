@@ -3,7 +3,7 @@ import './Output.scss';
 
 function Output({ char }) {
     return (
-        <span className='char'>
+        <span className='board__output-char'>
             {char}
         </span>
     )

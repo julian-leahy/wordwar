@@ -85,11 +85,14 @@ function Board({ roundTime }) {
     }
 
     return (
-        <div className='board-wrap'>
-            <div className='output'>
+        <div className='board'>
+            <div className='board__output'>
                 {chars.map((char, idx) => <Output key={idx} char={char} />)}
             </div>
-            <div className='board'>
+            <div className='progress-mobile'>
+                <div className='progress-mobile__inner' style={{ width: (seconds / roundTime * 100) + '%' }}></div>
+            </div>
+            <div className='board__grid'>
                 {tiles.map((tile, idx) => {
                     if (active.length > 0) {
                         // add disabled class to any squares not within reach of selected item
@@ -103,16 +106,13 @@ function Board({ roundTime }) {
                         <Square key={idx} tile={tile} id={idx} disabled={disabled} selected={selected} />
                     )
                 })}
-
             </div>
+
             <div className="timer">
-                <div className='timer__inner' style={{
-                    color: timerWarning
-                }}>
+                <div className='timer__inner' style={{ color: timerWarning }}>
                     {isActive && seconds === 0 ? setIsActive(false) : seconds}
                 </div>
             </div>
-
 
             {!isActive && <Scorecard round={reset} />}
         </div>

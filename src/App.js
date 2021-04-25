@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       {
-        !gameState ? <Board roundTime={3} /> : <Difficulty />
+        !gameState ? <Board roundTime={300} /> : <Difficulty />
       }
     </div>
   )

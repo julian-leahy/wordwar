@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { AIWords, difficulty, findWords, isNewGame } from '../board/boardSlice';
+import { CSSTransition } from 'react-transition-group';
+import { difficulty, isNewGame } from '../board/boardSlice';
 import CustomButton from '../buttons/CustomButton';
 import Rules from '../rules/Rules';
 import './Difficulty.scss';
-import { CSSTransition } from 'react-transition-group';
 
 function Difficulty() {
 
@@ -13,10 +13,8 @@ function Difficulty() {
     const nodeRef = React.createRef(null);
 
     const setDifficulty = (level) => {
-        dispatch(findWords());
         dispatch(difficulty(level));
-        dispatch(AIWords());
-        dispatch(isNewGame(false))
+        dispatch(isNewGame(false));
     }
 
     const toggleRules = () => {

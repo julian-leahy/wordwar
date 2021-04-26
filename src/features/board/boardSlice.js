@@ -138,7 +138,7 @@ export const generateBoard = () => (dispatch, getState) => {
 export const findWords = () => (dispatch, getState) => {
     const currentValue = selectBoard(getState());
     const words = getAvailableWords(currentValue);
-    dispatch(allWords(words))
+    dispatch(allWords(words));
 };
 
 // 🤖 will find a percentage of random words from possible selection based on difficulty level

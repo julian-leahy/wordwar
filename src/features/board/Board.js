@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    clearBoard,
-    generateBoard,
-    saveWords,
+    AIWords,
+    clearAll, clearBoard,
+    findWords, generateBoard,
+    incrementRound,
+    resetAll, saveWords,
     selectBoard,
     selectChar,
     selectCurrent,
     selectDisabled,
-    findWords,
-    AIWords,
-    clearAll,
-    incrementRound,
-    selectRound,
-    resetAll
+    selectRound
 } from '../board/boardSlice';
 import Output from '../output/Output';
 import Scorecard from '../scorecard/Scorecard';
@@ -27,7 +24,7 @@ function Board({ roundTime }) {
 
     const [seconds, setSeconds] = useState(roundTime);
     const [isActive, setIsActive] = useState(true);
-    const [timerWarning, setTimerWarning] = useState('#9acd32')
+    const [timerWarning, setTimerWarning] = useState('#9acd32');
 
     const dispatch = useDispatch();
 
@@ -41,14 +38,16 @@ function Board({ roundTime }) {
     // only run once!
     useEffect(() => {
         document.addEventListener('keydown', handleEnter);
-        dispatch(generateBoard())
+        dispatch(generateBoard());
+        dispatch(findWords());
+        dispatch(AIWords());
         // eslint-disable-next-line 
     }, [])
 
     useEffect(() => {
         let interval = null;
         if (isActive) {
-            seconds <= 5 ? setTimerWarning('red') : setTimerWarning('#9acd32')
+            seconds <= 5 ? setTimerWarning('red') : setTimerWarning('#9acd32');
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
             }, 1000);
@@ -56,7 +55,7 @@ function Board({ roundTime }) {
             clearInterval(interval);
         }
         return () => {
-            clearInterval(interval)
+            clearInterval(interval);
         };
     }, [isActive, seconds]);
 
@@ -71,7 +70,7 @@ function Board({ roundTime }) {
     // reset round
     const reset = () => {
         if (currentRound === 3) {
-            dispatch(resetAll())
+            dispatch(resetAll());
         } else {
             dispatch(clearAll());
             dispatch(generateBoard());

@@ -48,6 +48,6 @@
 }
 
 .loaded-enter-active .rules {
-    transition: opacity 300ms ease-in;
+    transition: opacity 300ms ease-out;
     opacity: 1;
 }

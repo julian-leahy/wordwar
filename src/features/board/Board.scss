@@ -73,3 +73,12 @@
         height: 6px;
     }
 }
+
+.show-enter .board {
+    opacity: 0;
+}
+
+.show-enter-active .board {
+    transition: opacity 300ms ease-in;
+    opacity: 1;
+}

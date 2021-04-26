@@ -10,6 +10,8 @@ function Difficulty() {
 
     const dispatch = useDispatch();
     const [showRules, setShowRules] = useState(false);
+    // fix for react-transition-group 
+    // https://github.com/reactjs/react-transition-group/issues/668
     const nodeRef = React.createRef(null);
 
     const setDifficulty = (level) => {
@@ -48,9 +50,6 @@ function Difficulty() {
 
                 </CSSTransition>
             </div>
-
-
-
         </div>
     )
 }

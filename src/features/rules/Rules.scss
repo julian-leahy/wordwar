@@ -3,15 +3,38 @@
 .rules {
     background-color: $light;
     position: absolute;
-    bottom: 0;
     top: 0;
+    width: 598px;
     &__inner {
         padding: 20px;
         p {
             padding-bottom: 10px;
         }
+        & .score-tables {
+            border-collapse: collapse;
+            margin-top: 10px;
+            width: 100%;
+            & td,
+            th {
+                border: 1px solid #ddd;
+                padding: 8px;
+            }
+            & th {
+                background-color: $dark;
+                padding-bottom: 12px;
+                color: $brightGreen;
+                padding-top: 12px;
+                text-align: left;
+            }
+            & tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+            & tr:hover {
+                background-color: #ddd;
+            }
+        }
     }
-    .close {
+    & .close {
         background-color: $dark;
         color: $light;
         &:hover {
@@ -20,26 +43,11 @@
     }
 }
 
-.score-tables {
-    border-collapse: collapse;
-    margin-top: 10px;
-    width: 100%;
-    & td,
-    th {
-        border: 1px solid #ddd;
-        padding: 8px;
-    }
-    & th {
-        background-color: $dark;
-        padding-bottom: 12px;
-        color: $brightGreen;
-        padding-top: 12px;
-        text-align: left;
-    }
-    & tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-    & tr:hover {
-        background-color: #ddd;
-    }
+.loaded-enter .rules {
+    opacity: 0;
+}
+
+.loaded-enter-active .rules {
+    transition: opacity 300ms ease-in;
+    opacity: 1;
 }

@@ -13,6 +13,23 @@
     top: 0;
 }
 
+.current-round {
+    position: absolute;
+    color: white;
+    top: 15px;
+    font-size: 2.5rem;
+    padding: 5px;
+    & .winner {
+        color: $offYellow;
+        border-bottom: 3px solid white;
+    }
+    & .over,
+    .round-text {
+        color: white;
+        border-bottom: 3px solid $offYellow;
+    }
+}
+
 .scorecard__inner {
     flex-direction: column;
     max-width: $maxWidth;
@@ -24,9 +41,11 @@
     position: relative;
     display: flex;
     & .score {
-        border: 3px solid $offYellow;
         margin-bottom: 30px;
         padding: 10px;
+    }
+    & .round {
+        border: 3px solid $offYellow;
     }
 }
 
@@ -60,7 +79,7 @@
 .scorecard__inner-words {
     border: 3px solid $offYellow;
     background-color: $light;
-    max-height: 80vh;
+    max-height: 65vh;
     overflow: auto;
     display: flex;
 }

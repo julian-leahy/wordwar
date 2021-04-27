@@ -47,8 +47,10 @@ function Scorecard({ round }) {
         }
     }
 
+
     return (
         <div className='scorecard'>
+            <div className='current-round'>{rounds === 3 ? <span className='over'>Game Over. <span className='winner'>{displayWinner()}</span></span> : <span className='round-text'>{`Round ${rounds}`}</span>}</div>
             <div className='scorecard__inner'>
                 <div className='scorecard__inner-score'>
                     <div className='players-scores'>
@@ -56,7 +58,7 @@ function Scorecard({ round }) {
                         <div className='AI score'>A.I Score: <span className='pts'>{AIScore} pts.</span></div>
                     </div>
                     <div className='action'>
-                        <div className='round score' onClick={round}>{rounds === 3 ? `Game Over. ${displayWinner()}` : 'Next Round'}</div>
+                        <div className='round score' onClick={round}>{rounds === 3 ? 'New Game' : 'Next Round'}</div>
                     </div>
                 </div>
                 <div className='scorecard__inner-words'>

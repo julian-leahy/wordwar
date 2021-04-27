@@ -3,6 +3,8 @@
 ## Yep, it's basically Boogle against the computer! 
 ### Its addictive, challenging and lots fun!
 
+![](wordwar.gif)
+
 Choose from 3 levels of difficulty, play 3 rounds each one lasting 3 minutes, 3 times (actually you can play as much as you like but I clearly had something going on with the 3 thing).
 
 After each round you can see all the words you missed and it's usually a lot, more than I care to admit!

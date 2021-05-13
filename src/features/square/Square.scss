@@ -21,9 +21,16 @@
     }
     &.disabled {
         background-color: lighten($dark, 85);
+        color: #000;
     }
     &.active {
         background-color: $dark;
         color: $brightGreen;
     }
+}
+
+.square:focus{
+    background-color: $dark;
+    cursor: pointer;
+    color: $light;
 }

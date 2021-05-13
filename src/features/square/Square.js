@@ -36,14 +36,14 @@ function Square({ tile, id, disabled, selected }) {
     };
 
     return (
-        <div
+        <button
             className={`square ${selected ? 'active' : ''} ${disabled ? 'disabled' : ''}`}
             aria-label='Select Letter'
-            role='button'
             onClick={selectedChar}
+            disabled={disabled}
         >
             {tile}
-        </div>
+        </button>
     )
 }
 
